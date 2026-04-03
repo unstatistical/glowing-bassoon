@@ -1,9 +1,9 @@
 services:
   php:
-    build: ./docker/php
+    build: ./php
     working_dir: /var/www/html
     volumes:
-      - .:/var/www/html:ro
+      - ..:/var/www/html:ro
       - php:/run/php
     networks:
       - php
@@ -12,11 +12,11 @@ services:
       - "9000:9000"
   httpd:
     image: httpd:2.4.66-trixie
-    working_dir: /usr/local/apache2/htdocs
+    working_dir: /var/www/html
     volumes:
-      - .:/var/www/html:ro
-      - ./docker/httpd/extra/proxy-php.conf:/usr/local/apache2/conf/extra/proxy-php.conf:ro
-      - ./docker/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ..:/var/www/html:ro
+      - ./httpd/extra/proxy-php.conf:/usr/local/apache2/conf/extra/proxy-php.conf:ro
+      - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - php:/run/php
     networks:
       - php
