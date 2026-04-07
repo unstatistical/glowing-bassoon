@@ -2,6 +2,7 @@ services:
   php:
     build: ./php
     working_dir: /var/www/html
+    env_file: .env
     volumes:
       - ../public:/var/www/html:ro
       - php:/run/php
@@ -24,10 +25,11 @@ services:
   postgres:
     build: ./postgres
     restart: always
+    env_file: .env
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres:/var/lib/postgresql
     networks:
