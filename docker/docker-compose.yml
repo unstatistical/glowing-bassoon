@@ -11,12 +11,10 @@ services:
     ports:
       - "9000:9000"
   httpd:
-    image: httpd:2.4.66-trixie
+    build: ./httpd
     working_dir: /var/www/html
     volumes:
       - ../public:/var/www/html:ro
-      - ./httpd/extra/proxy-php.conf:/usr/local/apache2/conf/extra/proxy-php.conf:ro
-      - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - php:/run/php
     networks:
       - php
@@ -32,7 +30,6 @@ services:
       POSTGRES_DB: postgres
     volumes:
       - postgres:/var/lib/postgresql
-      - ./postgres/postgis.sql:/docker-entrypoint-initdb.d/postgis.sql
     networks:
       - postgres
     ports:
