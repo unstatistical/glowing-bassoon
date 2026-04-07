@@ -3,7 +3,7 @@ services:
     build: ./php
     working_dir: /var/www/html
     volumes:
-      - ..:/var/www/html:ro
+      - ../public:/var/www/html:ro
       - php:/run/php
     networks:
       - php
@@ -14,7 +14,7 @@ services:
     image: httpd:2.4.66-trixie
     working_dir: /var/www/html
     volumes:
-      - ..:/var/www/html:ro
+      - ../public:/var/www/html:ro
       - ./httpd/extra/proxy-php.conf:/usr/local/apache2/conf/extra/proxy-php.conf:ro
       - ./httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - php:/run/php
