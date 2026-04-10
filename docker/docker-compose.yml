@@ -4,24 +4,25 @@ services:
     working_dir: /var/www/html
     env_file: .env
     volumes:
-      - ../public:/var/www/html:ro
+      - ../public:/var/www/html
       - php:/run/php
     networks:
       - php
       - postgres
-    ports:
-      - "9000:9000"
+    expose:
+      - ${PHP_PORT}
   httpd:
     build: ./httpd
     working_dir: /var/www/html
     volumes:
-      - ../public:/var/www/html:ro
+      - ../public:/var/www/html
       - php:/run/php
     networks:
       - php
+    expose:
+      - ${HTTPD_PORT}
     ports:
-      - "80:80"
-      - "443:443"
+      - "${HTTPD_PORT}:${HTTPD_PORT}"
   postgres:
     build: ./postgres
     restart: always
@@ -34,8 +35,8 @@ services:
       - postgres:/var/lib/postgresql
     networks:
       - postgres
-    ports:
-      - "5432:5432"
+    expose:
+      - ${POSTGRES_PORT}
 
 volumes:
   php:
