@@ -1,29 +1,38 @@
 services:
   php:
+    container_name: php
     build: ./php
     working_dir: /var/www/html
     env_file: .env
     volumes:
       - ../public:/var/www/html
       - php:/run/php
+    depends_on:
+      - postgres
     networks:
       - php
       - postgres
+    hostname: ${PHP_HOST}
     expose:
       - ${PHP_PORT}
   httpd:
+    container_name: httpd
     build: ./httpd
     working_dir: /var/www/html
     volumes:
       - ../public:/var/www/html
       - php:/run/php
+    depends_on:
+      - php
     networks:
       - php
+    hostname: ${HTTPD_HOST}
     expose:
       - ${HTTPD_PORT}
     ports:
       - "${HTTPD_PORT}:${HTTPD_PORT}"
   postgres:
+    container_name: postgres
     build: ./postgres
     restart: always
     env_file: .env
