@@ -35,7 +35,6 @@ services:
     container_name: postgres
     build: ./postgres
     restart: always
-    env_file: .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -46,6 +45,8 @@ services:
       - postgres
     expose:
       - ${POSTGRES_PORT}
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
 
 volumes:
   php:
