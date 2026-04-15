@@ -10,3 +10,4 @@ This project uses the following open source software:
 4. [HTTPD](https://httpd.apache.org)
 5. [GDAL](https://gdal.org)
 6. [Debian](https://www.debian.org)
+7. [Git](https://git-scm.com)
