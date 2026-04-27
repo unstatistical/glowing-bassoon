@@ -29,7 +29,7 @@
             <p>index.php</p>
         </main>
         <footer>
-            <small>Copyright &copy; 2026 Desmond Vasicek</small>
+            <small>Copyright &copy; <?php echo date("Y") ?> Desmond Vasicek</small>
         </footer>
     </body>
 </html>
