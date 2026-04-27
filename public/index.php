@@ -14,28 +14,12 @@
 <!-- You should have received a copy of the GNU General Public License       -->
 <!-- along with this program.  If not, see <https://www.gnu.org/licenses/>.  -->
 
-<!DOCTYPE html>
-
-<?php
-
-header("Content-type: text/html; charset=utf-8");
-
-?>
+<!DOCTYPE html>'
 
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>index.php</title>
+        <title></title>
     </head>
-    <body>
-        <header>
-            <h1>index.php</h1>
-        </header>
-        <main>
-            <p>index.php</p>
-        </main>
-        <footer>
-            <small>Copyright &copy; <?php echo date("Y") ?> Desmond Vasicek</small>
-        </footer>
-    </body>
+    <body></body>
 </html>
