@@ -4,11 +4,17 @@ services:
     volumes:
       - ../public:/var/www/html
       - php:/run/php
+      - mapnik:/var/lib/mapnik
+      - gdal:/var/lib/gdal
     depends_on:
       - postgres
+      - mapnik
+      - gdal
     networks:
       - php
       - postgres
+      - mapnik
+      - gdal
   httpd:
     build: ./httpd
     volumes:
@@ -33,10 +39,27 @@ services:
       - postgres
     ports:
       - "5432:5432"
+  mapnik:
+    build: ./mapnik
+    volumes:
+      - mapnik:/var/lib/mapnik
+    networks:
+      - mapnik
+      - postgres
+  gdal:
+    build: ./gdal
+    volumes:
+      - gdal:/var/lib/gdal
+    networks:
+    - gdal
 
 volumes:
   php:
   postgres:
+  mapnik:
+  gdal:
 networks:
   php:
   postgres:
+  mapnik:
+  gdal:
