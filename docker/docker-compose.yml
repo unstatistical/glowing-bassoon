@@ -42,16 +42,21 @@ services:
   mapnik:
     build: ./mapnik
     volumes:
+      - ./mapnik/osm/oregon.osm.pbf:/var/tmp/osm/oregon.osm.pbf
       - mapnik:/var/lib/mapnik
     networks:
       - mapnik
+      - postgres
+    depends_on:
       - postgres
   gdal:
     build: ./gdal
     volumes:
       - gdal:/var/lib/gdal
     networks:
-    - gdal
+      - gdal
+    depends_on:
+      - postgres
 
 volumes:
   php:

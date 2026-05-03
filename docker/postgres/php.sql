@@ -1,0 +1,1 @@
+CREATE USER php WITH PASSWORD 'php';
